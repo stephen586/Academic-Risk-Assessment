@@ -1,0 +1,5 @@
+﻿.venv/
+__pycache__/
+*.pyc
+*.csv
+academic_risk_outputs/decision_tree

@@ -1,0 +1,97 @@
+A. ORIGINAL SHAPE: (10, 8)
+DATA TYPES:
+ Student_ID                int64
+County                      str
+Study_Hours_Per_Week    float64
+Attendance_Percent      float64
+Fee_Balance_Ksh           int64
+Previous_Grade            int64
+Student_Type                str
+Academic_Risk             int64
+DESCRIBE:
+         Student_ID  Study_Hours_Per_Week  Attendance_Percent  Fee_Balance_Ksh  Previous_Grade  Academic_Risk
+count    10.000000              9.000000            9.000000        10.000000       10.000000      10.000000
+mean   1004.600000             17.000000           78.111111      7700.000000       66.700000       0.400000
+std       2.875181              7.123903           14.598326      9153.627089       16.145519       0.516398
+min    1001.000000              8.000000           55.000000         0.000000       45.000000       0.000000
+25%    1002.250000             12.000000           65.000000         0.000000       52.000000       0.000000
+50%    1004.500000             15.000000           85.000000      3500.000000       68.500000       0.000000
+75%    1006.750000             20.000000           88.000000     14250.000000       79.500000       1.000000
+max    1009.000000             30.000000           95.000000     25000.000000       90.000000       1.000000
+B. MISSING:
+ Student_ID              0
+County                  1
+Study_Hours_Per_Week    1
+Attendance_Percent      1
+Fee_Balance_Ksh         0
+Previous_Grade          0
+Student_Type            0
+Academic_Risk           0
+EXACT DUPLICATES: 1
+DUPLICATED STUDENT IDS: 1
+CLEANED SHAPE: (9, 8)
+CLEANED DATA:
+  Student_ID   County  Study_Hours_Per_Week  Attendance_Percent  Fee_Balance_Ksh  Previous_Grade Student_Type  Academic_Risk
+       1001   Nakuru                  15.0                85.0                0              72      Regular              0
+       1002    Narok                   8.0                60.0            15000              48      Regular              1
+       1003   Nakuru                  20.0                92.0                0              85  Scholarship              0
+       1004    Narok                  16.5                55.0            25000              45      Regular              1
+       1005 Kakamega                  12.0                78.0             5000              65  Scholarship              0
+       1006  Nairobi                  30.0                95.0                0              90      Regular              0
+       1007  Unknown                  10.0                65.0            18000              50  Scholarship              1
+       1008    Narok                  25.0                88.0             2000              82      Regular              0
+       1009   Nakuru                  18.0                81.5            12000              58      Regular              1
+RISK COUNTS:
+ Academic_Risk
+0    5
+1    4
+RISK GROUP MEANS:
+                Study_Hours_Per_Week  Attendance_Percent  Fee_Balance_Ksh  Previous_Grade
+Academic_Risk                                                                           
+0                            20.400              87.600           1400.0           78.80
+1                            13.125              65.375          17500.0           50.25
+COUNTY RISK RATES:
+           count      mean
+County                   
+Kakamega      1  0.000000
+Nairobi       1  0.000000
+Nakuru        3  0.333333
+Narok         3  0.666667
+Unknown       1  1.000000
+ENGINEERED:
+  Student_ID Attendance_Category  Has_Fee_Balance
+       1001                High                0
+       1002                 Low                1
+       1003                High                0
+       1004                 Low                1
+       1005            Moderate                1
+       1006                High                0
+       1007                 Low                1
+       1008                High                1
+       1009            Moderate                1
+CORRELATIONS WITH RISK:
+ Previous_Grade         -0.884575
+Attendance_Percent     -0.811326
+Study_Hours_Per_Week   -0.540896
+Has_Fee_Balance         0.632456
+Fee_Balance_Ksh         0.914861
+Academic_Risk           1.000000
+ENCODED/STANDARDIZED FEATURES:
+  Study_Hours_Per_Week  Attendance_Percent  Fee_Balance_Ksh  Previous_Grade  Has_Fee_Balance  County_Kakamega  County_Nairobi  County_Nakuru  County_Narok  County_Unknown  Student_Type_Regular  Student_Type_Scholarship  Attendance_Category_Low  Attendance_Category_Moderate  Attendance_Category_High
+               -0.324               0.535           -0.978           0.367                0                0               0              1             0               0                     1                         0                        0                             0                         1
+               -1.372              -1.302            0.737          -1.129                1                0               0              0             1               0                     1                         0                        1                             0                         0
+                0.424               1.049           -0.978           1.178                0                0               0              1             0               0                     0                         1                        0                             0                         1
+               -0.100              -1.669            1.881          -1.316                1                0               0              0             1               0                     1                         0                        1                             0                         0
+               -0.773               0.020           -0.407          -0.069                1                1               0              0             0               0                     0                         1                        0                             1                         0
+                1.920               1.269           -0.978           1.490                0                0               1              0             0               0                     1                         0                        0                             0                         1
+               -1.072              -0.935            1.080          -1.005                1                0               0              0             0               1                     0                         1                        1                             0                         0
+                1.172               0.755           -0.750           0.991                1                0               0              0             1               0                     1                         0                        0                             0                         1
+                0.125               0.278            0.394          -0.506                1                0               0              1             0               0                     1                         0                        0                             1                         0
+TREE ROOT: Previous_Grade
+TREE RULES:
+ |--- Previous_Grade <= -0.29
+|   |--- class: 1
+|--- Previous_Grade >  -0.29
+|   |--- class: 0
+
+TRAINING ACCURACY: 1.0
